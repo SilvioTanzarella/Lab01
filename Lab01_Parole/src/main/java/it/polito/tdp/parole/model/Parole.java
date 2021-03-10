@@ -1,24 +1,41 @@
 package it.polito.tdp.parole.model;
 
-import java.util.List;
+import java.util.*;
 
-public class Parole {
+public class Parole{
+	
+	private List<String> parole;
 		
 	public Parole() {
-		//TODO
+		this.parole = new ArrayList<String>();
 	}
 	
 	public void addParola(String p) {
-		//TODO
+		parole.add(p);
 	}
 	
 	public List<String> getElenco() {
-		//TODO
-		return null;
+		Collections.sort(this.parole);
+		return this.parole;
 	}
 	
 	public void reset() {
-		// TODO
+		this.parole.clear();
 	}
+	
+	public void eliminaParola(String p) {
+		this.parole.remove(p);
+	}
+	
+	public String descriviti() {
+		String s = "";
+		for(String i:this.parole) {
+			s += i+"\n";
+		}
+		return s;
+		
+	}
+	
+	
 
 }

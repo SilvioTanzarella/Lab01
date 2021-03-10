@@ -22,7 +22,13 @@ public class FXMLController {
 
     @FXML
     private TextField txtParola;
+    
+    @FXML
+    private TextField txtTempo;
 
+    @FXML
+    private Button btnCancella;
+    
     @FXML
     private Button btnInserisci;
 
@@ -34,12 +40,29 @@ public class FXMLController {
 
     @FXML
     void doInsert(ActionEvent event) {
-    	// TODO
+    	elenco.addParola(txtParola.getText());
+    	this.txtResult.setText(elenco.descriviti());
+    	long l = System.nanoTime();
+    	this.txtTempo.setText("Tempo impiegato in nanosecondi: "+l);
+    	this.txtParola.setText("");
     }
 
     @FXML
     void doReset(ActionEvent event) {
-    	// TODO
+    	elenco.reset();
+    	this.txtResult.setText("");
+    	long l = System.nanoTime();
+    	this.txtTempo.setText("Tempo impiegato in nanosecondi: "+l);
+    }
+    
+    @FXML
+    void doCancella(ActionEvent event) {
+    	this.elenco.eliminaParola(this.txtParola.getText());
+    	this.txtResult.setText(elenco.descriviti());
+    	this.txtParola.setText("");
+    	long l = System.nanoTime();
+    	this.txtTempo.setText("Tempo impiegato in nanosecondi: "+l);
+
     }
 
     @FXML
@@ -47,7 +70,9 @@ public class FXMLController {
         assert txtParola != null : "fx:id=\"txtParola\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnInserisci != null : "fx:id=\"btnInserisci\" was not injected: check your FXML file 'Scene.fxml'.";
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert btnCancella != null : "fx:id=\"btnCancella\" was not injected: check your FXML file 'Scene.fxml'.";
         assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Scene.fxml'.";
+        assert txtTempo != null : "fx:id=\"txtTempo\" was not injected: check your FXML file 'Scene.fxml'.";
 
         elenco = new Parole() ;
     }
